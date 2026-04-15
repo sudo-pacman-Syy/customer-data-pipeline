@@ -4,8 +4,10 @@ from models import Customer
 
 BASE_URL = "http://mock-server:5000/api/customers"
 
-
 def fetch_all_customers():
+    """
+    Fetch all customers from the mock server.
+    """
     page = 1
     all_data = []
 
@@ -23,8 +25,12 @@ def fetch_all_customers():
 
     return all_data
 
-
 def upsert_customer(db: Session, data):
+    """
+    Upsert a customer record.
+    If a customer with the same customer_id exists, update it.
+    Otherwise, insert a new record.
+    """
     existing = db.query(Customer).filter_by(
         customer_id=data["customer_id"]
     ).first()

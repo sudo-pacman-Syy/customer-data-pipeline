@@ -3,18 +3,22 @@ import json
 
 app = Flask(__name__)
 
-# load data dari JSON
 with open("data/customers.json") as f:
     customers = json.load(f)
 
-# health check
 @app.route("/api/health")
 def health():
+    """
+    Simple health check endpoint to verify the server is running.
+    """
     return {"status": "ok"}
 
-# GET list + pagination
 @app.route("/api/customers")
 def get_customers():
+    """
+    Fetch paginated list of customers. Accepts 'page' and 'limit' as query parameters for pagination.
+     If not provided, defaults to page=1 and limit=10.
+    """
     page = int(request.args.get("page", 1))
     limit = int(request.args.get("limit", 10))
 
@@ -28,9 +32,12 @@ def get_customers():
         "limit": limit
     })
 
-# GET by ID
 @app.route("/api/customers/<id>")
 def get_customer(id):
+    """
+    Fetch a single customer by ID. If not found, return 404.
+    """
+
     for c in customers:
         if c["customer_id"] == id:
             return jsonify(c)
