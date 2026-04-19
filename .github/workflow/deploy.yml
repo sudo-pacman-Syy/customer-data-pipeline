@@ -1,4 +1,4 @@
-name: "Deploy game"
+name: "Deploy Pipeline"
 on:
   push:
     branches: [ main ]
@@ -11,7 +11,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy 
+      - name: Build and deploy Docker compose
         run: |
-          chmod +x ./deploy.sh
-          ./deploy.sh
+         docker compose up -d --remove-optional
+
+         docker image prune -f
