@@ -17,3 +17,6 @@ docker-compose up -d
 
 ## Architecture
 Flask (Mock API) → FastAPI (Ingestion) → PostgreSQL
+
+## CD/CD
+Added CI/CD pipeline using GitHub Actions. Now the project supports automated deployment to self-hosted runners, ensuring consistent environment and faster updates
