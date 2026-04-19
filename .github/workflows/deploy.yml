@@ -13,6 +13,6 @@ jobs:
 
       - name: Build and deploy Docker compose
         run: |
-         docker compose up -d --remove-optional
+         docker compose up -d --remove-orphans
 
          docker image prune -f
